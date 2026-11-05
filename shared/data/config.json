@@ -1,0 +1,42 @@
+{
+  "dataVersion": "2026.11.06",
+  "checkedDate": "2026-11-06",
+  "exam": {
+    "name": "危険物取扱者試験 乙種第6類",
+    "format": "五肢択一式（マークシート）",
+    "timeMinutes": 120,
+    "passRate": 0.6,
+    "targetBonus": 0.2,
+    "subjects": [
+      { "id": "law", "name": "危険物に関する法令", "short": "法令", "questions": 15 },
+      { "id": "chem", "name": "基礎的な物理学及び基礎的な化学", "short": "物理・化学", "questions": 10 },
+      { "id": "prop", "name": "危険物の性質並びにその火災予防及び消火の方法", "short": "性質・消火", "questions": 10 }
+    ],
+    "exemption": {
+      "label": "乙種の免状を持っている（法令・物理化学が免除）",
+      "subjects": ["prop"],
+      "timeMinutes": 35
+    },
+    "sources": [
+      { "name": "消防試験研究センター 試験科目・問題数", "url": "https://www.shoubo-shiken.or.jp/kikenbutsu/annai/subject.html", "checkedDate": "2026-11-06" },
+      { "name": "消防試験研究センター 試験の方法・合格基準", "url": "https://www.shoubo-shiken.or.jp/kikenbutsu/annai/way.html", "checkedDate": "2026-11-06" }
+    ],
+    "pastExam": {
+      "name": "消防試験研究センター「過去に出題された問題」（乙種第1・2・3・5・6類 合冊PDF）",
+      "url": "https://www.shoubo-shiken.or.jp/kikenbutsu/exercise.html",
+      "terms": "教育目的（非営利）の学校での配布・自分用の印刷を除き、許可なく複製・転用・販売などの二次利用は禁止されています。",
+      "checkedDate": "2026-11-06",
+      "included": 0,
+      "reason": "利用条件により、本アプリには公式の問題文を収録していません。公式サイトで直接ご覧ください（要インターネット）。"
+    },
+    "passRateNote": "乙種第6類の実際の合格率は令和8年4〜8月で67.0%（消防試験研究センター 試験実施状況）。"
+  },
+  "completion": {
+    "minFullMocks": 2,
+    "maxMockOverlap": 0.2,
+    "unitMasteryTarget": 0.8,
+    "unitImportanceRequired": 2,
+    "retestMinQuestions": 10
+  },
+  "contentFiles": ["law-1.json", "law-2.json", "chem-1.json", "chem-2.json", "prop-1.json", "prop-2.json"]
+}

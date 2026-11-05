@@ -1,0 +1,15 @@
+{
+  "name": "otsu6",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "危険物取扱者 乙種第6類 試験対策PWA（合格特化型・完全学習型）。依存なし。",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "node tools/serve.mjs 8810",
+    "start:pages": "node tools/serve.mjs 8811 /otsu6/",
+    "validate": "node tools/validate.mjs",
+    "build": "node tools/build-sw.mjs",
+    "test": "node --test tests/*.test.mjs"
+  }
+}
