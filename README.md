@@ -51,5 +51,6 @@ node tools/build-sw.mjs             # ファイルを変えたら公開前に必
 更新時はアプリに「新しい版があります → 更新する」が出て、版ごとに丸ごと入れ替わる（古いファイルが混ざらない）。学習記録は localStorage（キー `otsu6:speed:state` / `otsu6:full:state`）でキャッシュとは別。
 
 ## 公開（GitHub Pages）
-リポジトリ `otsu6` を作り、このフォルダを main に push → Settings › Pages で main / root。URL は `https://<ユーザー名>.github.io/otsu6/`。誰でも見られる公開になる点に注意（URLを知る人だけに限定はできない）。
+公開中（2026-11-06）：https://daichiyutani-jpg.github.io/otsu6/ （repo daichiyutani-jpg/otsu6・public、Pages=main / root）。
+更新手順：`node tools/validate.mjs` → `node tools/build-sw.mjs` → commit → `git push`（1〜2分で反映）。SWは版つきURLで取得するので、CDNの古いファイルは保存されない。誰でも見られる公開になる点に注意（URLを知る人だけに限定はできない）。
 将来の販売時は、問題・教材の権利、販売規約、決済、認証を別途検討（データ・エンジン・UIは分離済み）。
