@@ -2,7 +2,7 @@
 // 学習記録は localStorage にあり、このキャッシュとは別。キャッシュを入れ替えても学習記録は消えない。
 // 版ごとにすべてのファイルを1つのキャッシュにまとめるので、古い版と新しい版のファイルが混ざらない。
 const PREFIX = 'otsu6-full-';
-const CACHE = PREFIX + '10cb263faa86';
+const CACHE = PREFIX + '77fd1ecea493';
 const FILES = [
   "./",
   "./app.js",

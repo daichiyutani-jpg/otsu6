@@ -115,9 +115,11 @@ function registerSW() {
     setInterval(() => reg.update().catch(() => {}), 30 * 60000);
     document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') reg.update().catch(() => {}); });
   }).catch(() => {});
+  // 初回訪問（まだ制御されていない）時の切り替えは「更新」ではないので再読み込みしない
+  const hadController = !!navigator.serviceWorker.controller;
   let reloaded = false;
   navigator.serviceWorker.addEventListener('controllerchange', () => {
-    if (reloaded) return; reloaded = true;
+    if (!hadController || reloaded) return; reloaded = true;
     toast('更新しました');
     location.reload();
   });
