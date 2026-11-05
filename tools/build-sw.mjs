@@ -14,6 +14,7 @@ for (const app of ['speed', 'full']) {
   const own = walk(appDir).filter((f) => !f.endsWith('sw.js'));
   const all = [...own, ...shared].sort();
   const hash = createHash('sha256');
+  hash.update(readFileSync(fileURLToPath(import.meta.url))); // SWの作り方を変えたときも版を変える
   for (const f of all) { hash.update(relative(ROOT, f)); hash.update(readFileSync(f)); }
   const version = hash.digest('hex').slice(0, 12);
   const list = ['./', ...all.map((f) => { const r = relative(appDir, f).split(sep).join('/'); return r.startsWith('..') ? r : './' + r; })];
@@ -25,7 +26,12 @@ const CACHE = PREFIX + '${version}';
 const FILES = ${JSON.stringify(list, null, 2)};
 
 self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(FILES.map((f) => new Request(f, { cache: 'reload' })))).then(() => {
+  // 配信側（CDN）の古いキャッシュを拾わないよう、版つきのURLで取得して、版なしのURLで保存する
+  e.waitUntil(caches.open(CACHE).then((c) => Promise.all(FILES.map(async (f) => {
+    const res = await fetch(new Request(f + (f.includes('?') ? '&' : '?') + 'v=${version}', { cache: 'reload' }));
+    if (!res.ok) throw new Error(f + ' ' + res.status);
+    await c.put(f, res);
+  }))).then(() => {
     // 初回はすぐ有効に。更新時は画面の「更新する」を押したときに切り替える（学習中の画面を急に変えない）
     if (!self.registration.active) return self.skipWaiting();
   }));
