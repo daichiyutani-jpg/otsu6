@@ -2,7 +2,7 @@
 // 学習記録は localStorage にあり、このキャッシュとは別。キャッシュを入れ替えても学習記録は消えない。
 // 版ごとにすべてのファイルを1つのキャッシュにまとめるので、古い版と新しい版のファイルが混ざらない。
 const PREFIX = 'otsu6-full-';
-const CACHE = PREFIX + '23bad2052793';
+const CACHE = PREFIX + 'b0d9fa5210c1';
 const FILES = [
   "./",
   "./app.js",
@@ -23,6 +23,8 @@ const FILES = [
   "../shared/core/curriculum.js",
   "../shared/core/engine.js",
   "../shared/core/exam.js",
+  "../shared/core/past-templates.js",
+  "../shared/core/pastimport.js",
   "../shared/core/store.js",
   "../shared/core/util.js",
   "../shared/data/config.json",
@@ -36,16 +38,21 @@ const FILES = [
   "../shared/ui/dom.js",
   "../shared/ui/home.js",
   "../shared/ui/mock.js",
+  "../shared/ui/past.js",
   "../shared/ui/quiz.js",
   "../shared/ui/shell.js",
   "../shared/ui/styles.css",
-  "../shared/ui/views.js"
+  "../shared/ui/views.js",
+  "../shared/vendor/pdfjs/LICENSE",
+  "../shared/vendor/pdfjs/README.txt",
+  "../shared/vendor/pdfjs/pdf.min.mjs",
+  "../shared/vendor/pdfjs/pdf.worker.min.mjs"
 ];
 
 self.addEventListener('install', (e) => {
   // 配信側（CDN）の古いキャッシュを拾わないよう、版つきのURLで取得して、版なしのURLで保存する
   e.waitUntil(caches.open(CACHE).then((c) => Promise.all(FILES.map(async (f) => {
-    const res = await fetch(new Request(f + (f.includes('?') ? '&' : '?') + 'v=23bad2052793', { cache: 'reload' }));
+    const res = await fetch(new Request(f + (f.includes('?') ? '&' : '?') + 'v=b0d9fa5210c1', { cache: 'reload' }));
     if (!res.ok) throw new Error(f + ' ' + res.status);
     await c.put(f, res);
   }))).then(() => {

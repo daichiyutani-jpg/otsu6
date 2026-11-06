@@ -2,6 +2,7 @@
 import { h, bar, stars, toast, confirmBox } from './dom.js';
 import { quizView, typeBadge } from './quiz.js';
 import { mockRoute } from './mock.js';
+import { pastRoute } from './past.js';
 import { animPlayer } from '../anim/player.js';
 import { ANIMS, ANIM_BY_ID } from '../anim/index.js';
 import { pickPractice, reviewQueue, pendingImportantMistakes, weakUnits, buildRetest, unitMastery, streak } from '../core/engine.js';
@@ -495,6 +496,7 @@ function aboutView(ctx, page) {
         h('dt', '模擬試験用'), h('dd', `${c.mock}問`),
         h('dt', '合計'), h('dd', `${c.total}問`)),
       h('p.small', `実際の過去問について：${ex.pastExam.reason}`),
+      h('a.btn.sm', { href: '#/past' }, '公式の過去問を取り込む・解く'),
       h('p.small.muted', `${ex.pastExam.name}：${ex.pastExam.url}（${ex.pastExam.terms} 確認日 ${ex.pastExam.checkedDate}）`),
       h('p.small.muted', '独自作成の問題は、作成時に正解・解説・選択肢の整合を自動検査し、内容を確認していますが、危険物の専門家による監修は受けていません。誤りに気づいた場合はお知らせください。')),
     h('div.card', h('h2', 'ご注意'),
@@ -508,5 +510,6 @@ function aboutView(ctx, page) {
 export const sharedRoutes = {
   units: unitsView, unit: unitView, practice: practiceView, review: reviewView, retest: retestView, diag: diagView,
   anims: animsView, anim: animView, substances: substancesView, mock: mockRoute,
+  past: pastRoute,
   progress: progressView, weak: weakView, causes: causesView, records: recordsView, settings: settingsView, about: aboutView,
 };

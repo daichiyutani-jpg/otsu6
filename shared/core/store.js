@@ -20,6 +20,7 @@ export function emptyState(appId, now = Date.now()) {
     diag: null,     // 実力診断 {t, perSubject:{law:{n,c}}, qids}
     settings: { reduceMotion: false, captions: true, fontScale: 1, exempt: false, dailyMinutes: 30, examDate: '' },
     resume: null,   // 前回の続き {route, label, t}
+    past: { sessions: [], q: {}, active: null }, // 公式の過去問（各自が取り込んだもの）の回答記録。問題の内容は持たない
   };
 }
 
@@ -69,6 +70,8 @@ export function migrate(s, appId) {
   const out = { ...base, ...s, settings: { ...base.settings, ...(s.settings || {}) } };
   for (const k of ['q', 'fav', 'days', 'anims', 'lessons']) if (typeof out[k] !== 'object' || out[k] === null || Array.isArray(out[k])) out[k] = {};
   for (const k of ['mocks', 'retests', 'causes']) if (!Array.isArray(out[k])) out[k] = [];
+  const p = out.past && typeof out.past === 'object' && !Array.isArray(out.past) ? out.past : {};
+  out.past = { sessions: Array.isArray(p.sessions) ? p.sessions : [], q: p.q && typeof p.q === 'object' && !Array.isArray(p.q) ? p.q : {}, active: p.active || null };
   out.schema = SCHEMA;
   out.appId = appId;
   return out;

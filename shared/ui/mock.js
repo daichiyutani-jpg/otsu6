@@ -43,9 +43,10 @@ function setupView(ctx, page, query) {
           h('dt', '合格基準'), h('dd', `各科目 ${pct(pass)}%以上（公式）`),
           h('dt', '学習目標'), h('dd', `各科目 ${pct(target)}%以上`)),
         h('p.small.muted', kind === 'full' ? '学習終了判定に数えるのはこの形式です（科目免除の設定時は「科目免除者用」）。' : kind === 'exempt' ? '乙種の免状をお持ちの方の形式（性質・消火10問・35分）。設定で科目免除をオンにすると終了判定に数えます。' : '科目別模試は弱点確認用です。学習終了判定には本番形式の結果を使います。'),
-        h('div.disclaimer', '出題はすべて本アプリの独自作成問題（模試専用問題と類題）です。実際の過去問は利用条件により収録していません。本番と同じ問題数・時間・科目構成・5択で、単元の重要度に応じて配分し、前回の模試で使った問題はできるだけ避けます。'),
+        h('div.disclaimer', '出題はすべて本アプリの独自作成問題（模試専用問題と類題）です。実際の過去問はアプリに収録していません（公式サイトのPDFを各自で取り込むと、下の「公式の過去問」で解けます）。本番と同じ問題数・時間・科目構成・5択で、単元の重要度に応じて配分し、前回の模試で使った問題はできるだけ避けます。'),
         h('button.btn.primary.block', { style: { marginTop: '12px' }, onclick: start }, '開始する')),
-      h('a.btn.block', { href: '#/mock/history' }, '模擬試験の履歴'));
+      h('a.btn.block', { href: '#/mock/history' }, '模擬試験の履歴'),
+      h('a.menu-item', { href: '#/past', style: { marginTop: '12px' } }, h('span.ico', '📄'), h('div', h('b', '公式の過去問（自分で取り込む）'), h('span.muted', '公式サイトのPDFをこの端末に読み込んで、本番形式で解く'))));
   };
   const start = () => {
     const mock = buildMock(ctx.state(), content, { kind, subject });

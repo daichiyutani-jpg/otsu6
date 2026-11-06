@@ -198,3 +198,20 @@ select, input[type=text], input[type=date], input[type=number] { width: 100%; mi
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 details > summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; font-weight: 600; }
 .loading { padding: 40px; text-align: center; color: var(--sub); }
+
+/* 公式の過去問（各自が取り込んだ画像） */
+.past-card { padding: 8px; background: #fff; }
+.past-img { display: block; width: 100%; height: auto; border-radius: 6px; background: #fff; }
+.past-choices { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 4px; }
+.past-choice { justify-content: center; align-items: center; min-height: 60px; padding: 8px; }
+.past-choice .num { width: 36px; height: 36px; font-size: 1.1rem; }
+.past-sheet { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.past-sheet .btn.sm { min-width: 58px; }
+.past-ans { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 6px; margin: 8px 0 4px; }
+.past-ans-cell { display: flex; flex-direction: column; gap: 2px; padding: 6px; border: 1px solid var(--line); border-radius: 10px; font-size: .9rem; }
+.past-ans-cell select { min-height: 40px; font-size: 1rem; }
+.past-ans-cell.warn { border-color: var(--ng); }
+.past-ans-cell .small { color: var(--ng); }
+.past-zoom { overflow-x: auto; cursor: zoom-in; -webkit-overflow-scrolling: touch; }
+.past-zoom.on { cursor: zoom-out; }
+.past-zoom.on .past-img { width: 170%; max-width: none; }
